@@ -24,7 +24,7 @@ jobs:
         uses: py-actions/py-dependency-install@v4.0.0
 
       - name: Copy .env-example to .env
-        run: cp .env-example .env
+        run: cp .env.example .env
       
       - name: Restore lastGenerated.json
         id: restore_last_generated

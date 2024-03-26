@@ -110,55 +110,63 @@ if response.status_code == 200:
               # Declare the plist to get useful info like CFBundleShortVersionString and CFBundleVersion
               plist = plistlib.load(open(f'{EXTRACT_TO}/Payload/Discord.app/Info.plist', 'rb'))
 
-              # If this is the first asset, we will add the entitlements and privacy to the app object
-              if len(app['versions']) == 0:
-                ##
-                # Adding appPermissions including entitlements and privacy
-                ##
-
-                app['appPermissions'] = {}
-                app['appPermissions']['entitlements'] = []
-
-                for entitlement in getEntitlements(f'{EXTRACT_TO}/Payload/{BINARY_KEY}.app/{BINARY_KEY}'):
-                  # Add entitlement to the entitlements array
-                  app['appPermissions']['entitlements'].append(entitlement)
-
-                app['appPermissions']['privacy'] = {}
-
-                for key, value in plist.items():
-                    # Check if the key starts with "NS" and ends with "UsageDescription"
-                    if key.startswith("NS") and key.endswith("UsageDescription"):
-                      # Add key-value pairs to the privacy object with the permission name being the key and the value being the value
-                      app['appPermissions']['privacy'][key] = value
-
-              # Get the number of bytes of the downloaded file at f'{EXTRACT_TO}/{APP_KEY}'
-              appSize = os.path.getsize(f'{EXTRACT_TO}/{APP_KEY}')
-
-              ##
-              # Creating and adding the version
-              ##
-
-              # Get the last modified date of the latest build
-              lastModified = asset['updated_at']
-
-              # Get the version's commit message
-              commit_msg = ''
-              for tag in all_tags:
-                if tag['name'] == tag_name:
-                  commit_msg = requests.get(tag['commit']['url'], headers=headers).json()['commit']['message']
+              doesNotExist = True
+              # Check if a version with the same version and buildVersion already exists, if so, break the release loop
+              for version in app['versions']:
+                if version['version'] == plist['CFBundleShortVersionString'] and version['buildVersion'] == plist['CFBundleVersion']:
+                  doesNotExist = False
                   break
+              
+              if doesNotExist:
+                # If this is the first asset, we will add the entitlements and privacy to the app object
+                if len(app['versions']) == 0:
+                  ##
+                  # Adding appPermissions including entitlements and privacy
+                  ##
 
-              version = {
-                "version": plist['CFBundleShortVersionString'],
-                "buildVersion": plist['CFBundleVersion'],
-                "date": lastModified,
-                "localizedDescription": f"{tag_name} - {commit_msg}",
-                "downloadURL": downloadURL,
-                "size": appSize,
-                "minOSVersion": plist['MinimumOSVersion']
-              }
-              app['versions'].append(version)
-              break
+                  app['appPermissions'] = {}
+                  app['appPermissions']['entitlements'] = []
+
+                  for entitlement in getEntitlements(f'{EXTRACT_TO}/Payload/{BINARY_KEY}.app/{BINARY_KEY}'):
+                    # Add entitlement to the entitlements array
+                    app['appPermissions']['entitlements'].append(entitlement)
+
+                  app['appPermissions']['privacy'] = {}
+
+                  for key, value in plist.items():
+                      # Check if the key starts with "NS" and ends with "UsageDescription"
+                      if key.startswith("NS") and key.endswith("UsageDescription"):
+                        # Add key-value pairs to the privacy object with the permission name being the key and the value being the value
+                        app['appPermissions']['privacy'][key] = value
+
+                # Get the number of bytes of the downloaded file at f'{EXTRACT_TO}/{APP_KEY}'
+                appSize = os.path.getsize(f'{EXTRACT_TO}/{APP_KEY}')
+
+                ##
+                # Creating and adding the version
+                ##
+
+                # Get the last modified date of the latest build
+                lastModified = asset['updated_at']
+
+                # Get the version's commit message
+                commit_msg = ''
+                for tag in all_tags:
+                  if tag['name'] == tag_name:
+                    commit_msg = requests.get(tag['commit']['url'], headers=headers).json()['commit']['message']
+                    break
+
+                version = {
+                  "version": plist['CFBundleShortVersionString'],
+                  "buildVersion": plist['CFBundleVersion'],
+                  "date": lastModified,
+                  "localizedDescription": f"{tag_name} - {commit_msg}",
+                  "downloadURL": downloadURL,
+                  "size": appSize,
+                  "minOSVersion": plist['MinimumOSVersion']
+                }
+                app['versions'].append(version)
+                break
 
 # Add app to the source
 source['apps'].append(app)

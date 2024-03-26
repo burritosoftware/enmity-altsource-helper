@@ -47,7 +47,7 @@ response = requests.get(BASE_URL)
 source = {}
 source['name'] = 'Enmity'
 source['subtitle'] = 'The power of addons, all in your hand.'
-source['iconURL'] = 'https://enmity-mod.github.io/repo/CydiaIcon@3x.png'
+source['iconURL'] = 'https://github.com/enmity-mod/assets/raw/main/icon-altstore.png'
 source['website'] = 'https://enmity.unbound.rip'
 source['tintColor'] = '#6D00FF'
 source['apps'] = []
@@ -59,7 +59,8 @@ app = {
   "developerName": "Enmity Team",
   "subtitle": "The power of addons, all in your hand.",
   "localizedDescription": f"The power of addons, all in your hand.",
-  "iconURL": "https://enmity-mod.github.io/repo/CydiaIcon@3x.png",
+  "iconURL": "https://taidums.are-really.cool/3n8avit.png",
+  "headerURL": "https://github.com/enmity-mod/assets/raw/main/Enmity_Banner%203.png",
   "tintColor": "#6D00FF",
   "category": "social",
   "screenshots": [

@@ -48,6 +48,7 @@ source = {}
 source['name'] = 'Enmity'
 source['subtitle'] = 'The power of addons, all in your hand.'
 source['iconURL'] = 'https://github.com/enmity-mod/assets/raw/main/icon-altstore.png'
+source['headerURL'] = 'https://github.com/enmity-mod/assets/raw/main/Enmity_Banner%203.png'
 source['website'] = 'https://enmity.unbound.rip'
 source['tintColor'] = '#6D00FF'
 source['apps'] = []
@@ -60,7 +61,6 @@ app = {
   "subtitle": "The power of addons, all in your hand.",
   "localizedDescription": f"The power of addons, all in your hand.",
   "iconURL": "https://taidums.are-really.cool/3n8avit.png",
-  "headerURL": "https://github.com/enmity-mod/assets/raw/main/Enmity_Banner%203.png",
   "tintColor": "#6D00FF",
   "category": "social",
   "screenshots": [

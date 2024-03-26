@@ -41,7 +41,7 @@ headers = {
     'Authorization': f'token {api_key}'  # Replace YOUR_API_KEY with your actual API key
 }
 
-response = requests.get(BASE_URL)
+response = requests.get(BASE_URL + '/releases', headers=headers)
 
 # AltStore source construction
 source = {}
@@ -85,7 +85,8 @@ if response.status_code == 200:
       # If lastGenerated.json exists and key "buildVersion" is the same as latestPath[:-1], then exit
       print('No new releases found. Exiting.')
       exit()
-
+    
+    all_tags = requests.get(BASE_URL + '/tags', headers=headers).json()
     # Iterate over releases
     for release in releases:
         tag_name = release['tag_name']
@@ -140,16 +141,24 @@ if response.status_code == 200:
               # Get the last modified date of the latest build
               lastModified = asset['updated_at']
 
+              # Get the version's commit message
+              commit_msg = ''
+              for tag in all_tags:
+                if tag['name'] == tag_name:
+                  commit_msg = requests.get(tag['commit']['url'], headers=headers).json()['commit']['message']
+                  break
+
               version = {
                 "version": plist['CFBundleShortVersionString'],
                 "buildVersion": plist['CFBundleVersion'],
                 "date": lastModified,
-                "localizedDescription": f"{plist['CFBundleShortVersionString']} ({plist['CFBundleVersion']})",
+                "localizedDescription": f"{tag_name} - {commit_msg}",
                 "downloadURL": downloadURL,
                 "size": appSize,
                 "minOSVersion": plist['MinimumOSVersion']
               }
               app['versions'].append(version)
+              break
 
 # Add app to the source
 source['apps'].append(app)

@@ -59,7 +59,7 @@ app = {
   "bundleIdentifier": "com.hammerandchisel.discord",
   "developerName": "Enmity Team",
   "subtitle": "The power of addons, all in your hand.",
-  "localizedDescription": f"The power of addons, all in your hand.",
+  "localizedDescription": "Enhance your Discord mobile experience with Enmity, boasting an extensive ecosystem of addons. Access a plethora of plugins and themes to personalize your interface, tailor features to your preferences, and unlock new functionalities seamlessly on the go.",
   "iconURL": "https://taidums.are-really.cool/3n8avit.png",
   "tintColor": "#6D00FF",
   "category": "social",

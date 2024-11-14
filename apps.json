@@ -1,0 +1,80 @@
+{
+  "name": "Enmity",
+  "subtitle": "The power of addons, all in your hand.",
+  "iconURL": "https://github.com/enmity-mod/assets/raw/main/icon-altstore.png",
+  "headerURL": "https://github.com/enmity-mod/assets/raw/main/Enmity_Banner%203.png",
+  "website": "https://enmity.unbound.rip",
+  "tintColor": "#6D00FF",
+  "apps": [
+    {
+      "name": "Enmity",
+      "bundleIdentifier": "com.hammerandchisel.discord",
+      "developerName": "Enmity Team",
+      "subtitle": "The power of addons, all in your hand.",
+      "localizedDescription": "Enhance your Discord mobile experience with Enmity, boasting an extensive ecosystem of addons. Access a plethora of plugins and themes to personalize your interface, tailor features to your preferences, and unlock new functionalities seamlessly on the go.",
+      "iconURL": "https://taidums.are-really.cool/3n8avit.png",
+      "tintColor": "#6D00FF",
+      "category": "social",
+      "screenshots": [
+        "https://enmity-mod.github.io/repo/screenshots_iphone/chat.png",
+        "https://enmity-mod.github.io/repo/screenshots_iphone/plugins.png",
+        "https://enmity-mod.github.io/repo/screenshots_iphone/profile.png",
+        "https://enmity-mod.github.io/repo/screenshots_iphone/settings.png"
+      ],
+      "versions": [
+        {
+          "version": "254.0",
+          "buildVersion": "66640",
+          "date": "2024-11-13T05:04:45Z",
+          "localizedDescription": "v2.2.6 - test",
+          "downloadURL": "https://github.com/enmity-mod/tweak/releases/download/v2.2.6/Enmity.ipa",
+          "size": 101165891,
+          "minOSVersion": "15.0"
+        },
+        {
+          "version": "175.0",
+          "buildVersion": "42954",
+          "date": "2023-04-25T02:44:32Z",
+          "localizedDescription": "v2.2.5 - update discord to stable v175",
+          "downloadURL": "https://github.com/enmity-mod/tweak/releases/download/v2.2.5/Enmity.ipa",
+          "size": 92936188,
+          "minOSVersion": "12.2"
+        },
+        {
+          "version": "175.0",
+          "buildVersion": "42377",
+          "date": "2023-04-14T18:47:13Z",
+          "localizedDescription": "v2.2.4 - Fix Image Backgrounds crashing media views (#20)\n\n- Removed comments from the BG hook as I decided I'm not going to do this\r\n- Ensures that the length of subviews is at least 3 so that it does not into the negatives (2-3=-1 and so on). This would cause a native crash when trying to open a Media/Image view because the amount of subviews there is less than 3, meaning that when the Image bg subview is inserted it tries to insert it into a negative index.",
+          "downloadURL": "https://github.com/enmity-mod/tweak/releases/download/v2.2.4/Enmity.ipa",
+          "size": 87875765,
+          "minOSVersion": "12.2"
+        }
+      ],
+      "appPermissions": {
+        "entitlements": [
+          "com.apple.developer.associated-appclip-app-identifiers",
+          "com.apple.developer.avfoundation.multitasking-camera-access",
+          "aps-environment",
+          "com.apple.developer.storekit.request-data",
+          "com.apple.developer.associated-domains",
+          "com.apple.security.application-groups",
+          "com.apple.developer.usernotifications.communication"
+        ],
+        "privacy": {
+          "NSBluetoothAlwaysUsageDescription": "To connect to your devices",
+          "NSBluetoothPeripheralUsageDescription": "To connect to your devices",
+          "NSCameraUsageDescription": "By allowing access to your camera, you can take pictures and others will be able to see you in voice and video calls.",
+          "NSContactsUsageDescription": "We can help you find people you know on Discord. Your contacts will be regularly sent to us so you can connect with friends. You can turn this off any time.",
+          "NSLocalNetworkUsageDescription": "Allow Discord access to your local network to find devices using the same internet connection.",
+          "NSLocationAlwaysAndWhenInUseUsageDescription": "To enable services that require location",
+          "NSLocationAlwaysUsageDescription": "To enable services that require location",
+          "NSLocationWhenInUseUsageDescription": "To enable services that require location",
+          "NSMicrophoneUsageDescription": "By allowing access to your microphone, you'll be able to talk in calls.",
+          "NSPhotoLibraryAddUsageDescription": "By allowing access to your library, you'll be able to download photos and videos.",
+          "NSPhotoLibraryUsageDescription": "By allowing us access to your photos, you will be able to upload images as an avatar, server icon, and more, and you can send photos and videos to your friends and communities."
+        }
+      }
+    }
+  ],
+  "news": []
+}
